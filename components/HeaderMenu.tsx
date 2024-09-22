@@ -34,7 +34,7 @@ export default function Header() {
       <NavigationMenu.Link
         asChild
         active={isActive}
-        className="block select-none rounded-md px-3 py-2 font-medium leading-none no-underline outline-none focus:shadow-[0_0_0_2px] hover:bg-orange-300 focus:bg-orange-500 data-[active]:bg-orange-500"
+        className="block select-none rounded-md px-3 py-2 font-medium leading-none no-underline outline-none focus:shadow-[0_0_0_2px] hover:bg-[--accent-a8] focus:bg-[--accent-10] data-[active]:bg-[--accent-10]"
       >
         <NextLink href={href} {...props} />
       </NavigationMenu.Link>

@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/HeaderMenu";
 import { Theme } from "@radix-ui/themes";
+import "@radix-ui/themes/styles.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,9 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Theme>
+        <Theme appearance="dark">
           <Header></Header>
           {children}
+          <footer className="text-center text-stone-400">
+            <a href="https://robertvl.dev">©️ Robert VanLonkhuyzen</a>
+          </footer>
         </Theme>
       </body>
     </html>
