@@ -5,6 +5,15 @@ import NextLink, { LinkProps } from "next/link"
 import { usePathname } from "next/navigation"
 import { ReactNode, useEffect, useState } from "react"
 
+type HeaderLinksType = {
+  name: string
+  href: string
+}
+const links: HeaderLinksType[] = [
+  { name: "Home", href: "/" },
+  { name: "Book Club", href: "/book_club" },
+]
+
 export default function Header() {
   const [scrollPosition, setScrollPosition] = useState(0)
   const handleScroll = () => {
@@ -85,6 +94,12 @@ export default function Header() {
           </NavigationMenu.Item>
         </NavigationMenu.List>
       </NavigationMenu.Root>
+      <NextLink href="/sign-up">
+        <button>Sign Up</button>
+      </NextLink>
+      <NextLink href="/sign-in">
+        <button>Sign In</button>
+      </NextLink>
     </header>
   )
 }
