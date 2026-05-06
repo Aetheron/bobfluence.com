@@ -1,3 +1,5 @@
+import { twMerge } from "tailwind-merge"
+
 const navigation = [
   { name: "Dashboard", href: "#", count: "5", current: true },
   { name: "Team", href: "#", current: false },
@@ -22,10 +24,6 @@ const teams = [
   { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
 ]
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ")
-}
-
 export default function Account() {
   return (
     <div className="relative flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 dark:border-white/10 dark:bg-gray-900 dark:before:pointer-events-none dark:before:absolute dark:before:inset-0 dark:before:bg-black/10">
@@ -49,7 +47,7 @@ export default function Account() {
                 <li key={item.name}>
                   <a
                     href={item.href}
-                    className={classNames(
+                    className={twMerge(
                       item.current
                         ? "bg-gray-50 text-indigo-600 dark:bg-white/5 dark:text-white"
                         : "text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white",
@@ -88,7 +86,7 @@ export default function Account() {
                 <li key={team.name}>
                   <a
                     href={team.href}
-                    className={classNames(
+                    className={twMerge(
                       team.current
                         ? "bg-gray-50 text-indigo-600 dark:bg-white/5 dark:text-white"
                         : "text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white",
@@ -96,7 +94,7 @@ export default function Account() {
                     )}
                   >
                     <span
-                      className={classNames(
+                      className={twMerge(
                         team.current
                           ? "border-indigo-600 text-indigo-600 dark:border-white/10 dark:text-white"
                           : "border-gray-200 text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600 dark:border-white/15 dark:group-hover:border-white/20 dark:group-hover:text-white",
