@@ -4,15 +4,15 @@ import { createClient } from "@/utils/supabase/server"
 import { encodedRedirect } from "@/utils/utils"
 import { SupabaseClient } from "@supabase/supabase-js"
 import { revalidatePath } from "next/cache"
-import { cookies, headers } from "next/headers"
+import { headers } from "next/headers"
 import { redirect } from "next/navigation"
 
-const cookieStore = await cookies()
+// const cookieStore = await cookies()
 
 export const signUpAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString()
   const password = formData.get("password")?.toString()
-  const supabase: SupabaseClient = await createClient(cookieStore)
+  const supabase: SupabaseClient = await createClient()
   const origin = (await headers()).get("origin")
 
   if (!email || !password) {
@@ -46,7 +46,7 @@ export const signUpAction = async (formData: FormData) => {
 export const signInAction = async (formData: FormData) => {
   const email = formData.get("email") as string
   const password = formData.get("password") as string
-  const supabase: SupabaseClient = await createClient(cookieStore)
+  const supabase: SupabaseClient = await createClient()
 
   const { error } = await supabase.auth.signInWithPassword({
     email,
@@ -63,7 +63,7 @@ export const signInAction = async (formData: FormData) => {
 
 export const forgotPasswordAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString()
-  const supabase: SupabaseClient = await createClient(cookieStore)
+  const supabase: SupabaseClient = await createClient()
   const origin = (await headers()).get("origin")
   const callbackUrl = formData.get("callbackUrl")?.toString()
 
@@ -96,7 +96,7 @@ export const forgotPasswordAction = async (formData: FormData) => {
 }
 
 export const resetPasswordAction = async (formData: FormData) => {
-  const supabase: SupabaseClient = await createClient(cookieStore)
+  const supabase: SupabaseClient = await createClient()
 
   const password = formData.get("password") as string
   const confirmPassword = formData.get("confirmPassword") as string
@@ -136,7 +136,7 @@ export const changePasswordAction = async <NotificationStateType>(
   previousState: NotificationStateType,
   formData: FormData
 ) => {
-  const supabase: SupabaseClient = await createClient(cookieStore)
+  const supabase: SupabaseClient = await createClient()
 
   const password = formData.get("new_password") as string
   const confirmPassword = formData.get("confirm_password") as string
@@ -175,7 +175,7 @@ export const changePasswordAction = async <NotificationStateType>(
 }
 
 export const signOutAction = async () => {
-  const supabase: SupabaseClient = await createClient(cookieStore)
+  const supabase: SupabaseClient = await createClient()
   await supabase.auth.signOut()
   return redirect("/sign-in")
 }
@@ -184,7 +184,7 @@ export const updateProfileAction = async <NotificationStateType>(
   previousState: NotificationStateType,
   formData: FormData
 ) => {
-  const supabase: SupabaseClient = await createClient(cookieStore)
+  const supabase: SupabaseClient = await createClient()
 
   const { error } = await supabase.auth.updateUser({
     data: {
