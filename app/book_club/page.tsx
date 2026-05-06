@@ -1,3 +1,5 @@
+// import backgroundMobile from "@/public/book-club-gradient-mobile.svg"
+import background from "@/public/book-club-gradient.svg"
 import { createClient } from "@/utils/supabase/server"
 import { PostgrestError } from "@supabase/supabase-js"
 import { cookies } from "next/headers"
@@ -35,6 +37,14 @@ export default async function bookClub() {
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <Image
+        src={background}
+        className="object-cover -z-10"
+        priority
+        fill
+        sizes="100vw"
+        alt=""
+      />
       {session && (
         <div>
           <h1 className="text-center sm:text-left text-4xl font-bold text-gray-900 dark:text-gray-200">
