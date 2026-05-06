@@ -16,6 +16,7 @@ export function encodedRedirect(
 }
 
 export function parseFormData(formData: FormData) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const parsedData: any = {}
   for (const [key, value] of formData.entries()) {
     const match = key.match(/^([^\[]+)\[(\d+)\]\[([\w-]+)\]$/) // Match keys like "field[index][key]"
