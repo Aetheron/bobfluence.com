@@ -55,9 +55,7 @@ export default function Header() {
       <NavigationMenu.Root className="relative z-1 flex w-screen justify-center">
         <NavigationMenu.List
           className={`center m-0 flex list-none rounded-lg p-1 transition-all duration-300 ${
-            scrollPosition > 10
-              ? "bg-onyx shadow-blackA4 shadow-[0_2px_10px]"
-              : ""
+            scrollPosition > 10 ? "bg-zinc-900 shadow-[0_2px_10px]" : ""
           }`}
         >
           <NavigationMenu.Item>
@@ -94,12 +92,6 @@ export default function Header() {
           </NavigationMenu.Item>
         </NavigationMenu.List>
       </NavigationMenu.Root>
-      <NextLink href="/sign-up">
-        <button>Sign Up</button>
-      </NextLink>
-      <NextLink href="/sign-in">
-        <button>Sign In</button>
-      </NextLink>
     </header>
   )
 }
