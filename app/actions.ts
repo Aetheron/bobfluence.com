@@ -61,6 +61,24 @@ export const signInAction = async (formData: FormData) => {
   return redirect("/account")
 }
 
+export const signInBookClubAction = async (formData: FormData) => {
+  const email = formData.get("email") as string
+  const password = formData.get("password") as string
+  const supabase: SupabaseClient = await createClient()
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  })
+
+  if (error) {
+    return encodedRedirect("error", "/sign-in", error.message)
+  }
+
+  revalidatePath("/book_club")
+  // return redirect("/account")
+}
+
 export const forgotPasswordAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString()
   const supabase: SupabaseClient = await createClient()

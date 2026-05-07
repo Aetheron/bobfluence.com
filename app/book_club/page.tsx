@@ -1,9 +1,12 @@
 // import backgroundMobile from "@/public/book-club-gradient-mobile.svg"
+import { SubmitButton } from "@/components/submit-button"
 import background from "@/public/book-club-gradient.svg"
 import { createClient } from "@/utils/supabase/server"
 import { PostgrestError } from "@supabase/supabase-js"
 import { cookies } from "next/headers"
 import Image from "next/image"
+import Link from "next/link"
+import { signInBookClubAction } from "../actions"
 
 type currentBookType = {
   id: string
@@ -30,8 +33,6 @@ export default async function bookClub() {
     error,
   }: { data: currentBookType[] | null; error: PostgrestError | null } =
     await supabase.from("current_book").select("*").limit(1)
-  console.dir(error)
-  console.dir(data)
 
   const currentBook = data ? (data[0] ?? null) : null
 
@@ -45,7 +46,7 @@ export default async function bookClub() {
         sizes="100vw"
         alt=""
       />
-      {session && (
+      {session ? (
         <div className="mx-auto max-w-3xl">
           <h1 className="mb-6 text-center sm:text-left text-4xl font-bold text-gray-900 dark:text-gray-200">
             {currentBook && currentBook.theme_title}
@@ -89,6 +90,90 @@ export default async function bookClub() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 lg:min-w-100">
+          <div className="sm:mx-auto sm:w-full sm:max-w-md">
+            {/* <Image
+              alt="Bobfluence"
+              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+              className="mx-auto h-10 w-auto"
+              width={24}
+              height={24}
+            /> */}
+            <h2 className="mt-6 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-gray-200">
+              Sign in to your account
+            </h2>
+            <p className="text-sm text-foreground text-center">
+              Don&apos;t have an account?{" "}
+              <Link
+                className="text-foreground font-medium underline"
+                href="/sign-up"
+              >
+                Sign up
+              </Link>
+            </p>
+          </div>
+
+          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-120">
+            <div className="bg-white/10 backdrop-blur-md px-6 py-12 shadow sm:rounded-lg sm:px-12">
+              <form action={signInBookClubAction} className="space-y-6">
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm/6 font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    Email address
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      autoComplete="email"
+                      placeholder="you@example.com"
+                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline -outline-offset-1 outline-gray-300 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-maize-300 sm:text-sm/6"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex justify-between items-center">
+                    <label
+                      htmlFor="password"
+                      className="block text-sm/6 font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Password
+                    </label>
+                    <Link
+                      className="text-xs text-foreground underline"
+                      href="/forgot-password"
+                    >
+                      Forgot Password?
+                    </Link>
+                  </div>
+                  <div className="mt-2">
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      required
+                      autoComplete="current-password"
+                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-slate-300 sm:text-sm/6"
+                    />
+                  </div>
+                </div>
+                <SubmitButton
+                  className="w-full!"
+                  pendingContent="Signing In..."
+                >
+                  Sign in
+                </SubmitButton>
+                {/* <FormMessage message={searchParams} /> */}
+              </form>
             </div>
           </div>
         </div>
