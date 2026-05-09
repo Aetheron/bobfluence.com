@@ -8,7 +8,7 @@ export default async function ForgotPassword(props: {
   const searchParams = await props.searchParams
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 lg:min-w-[400px]">
+      <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 lg:min-w-100">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <img
             alt="Bobfluence"
@@ -20,7 +20,7 @@ export default async function ForgotPassword(props: {
           </h2>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-120">
           <div className="bg-white dark:bg-slate-800 px-6 py-12 shadow sm:rounded-lg sm:px-12">
             <form action={forgotPasswordAction} className="space-y-6">
               <div>
@@ -38,7 +38,7 @@ export default async function ForgotPassword(props: {
                     required
                     autoComplete="email"
                     placeholder="you@example.com"
-                    className="block w-full rounded-md bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-gray-100 outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-slate-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-maize-300 focus:dark:bg-slate-700 sm:text-sm/6"
+                    className="block w-full rounded-md bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-gray-100 outline -outline-offset-1 outline-gray-300 dark:outline-slate-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-maize-300 focus:dark:bg-slate-700 sm:text-sm/6"
                   />
                 </div>
               </div>
