@@ -53,7 +53,7 @@ export default async function bookClub() {
           </h1>
           <div className="overflow-hidden rounded-lg bg-white shadow-sm dark:bg-gray-800/50 dark:shadow-none dark:outline dark:-outline-offset-1 dark:outline-white/10">
             <div className="px-4 py-5 sm:p-6">
-              <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
+              <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-8">
                 <div className="">
                   {currentBook && (
                     <Image
@@ -88,6 +88,15 @@ export default async function bookClub() {
                       </ol>
                     </div>
                   </div>
+                </div>
+                <div className="col-span-2!">
+                  <object
+                    data="/Character_Sheet.pdf"
+                    type="application/pdf"
+                    width="100%"
+                    height={600}
+                  ></object>
+                  {/* <iframe src="@/public/Character_Sheet.pdf" width={100} /> */}
                 </div>
               </div>
             </div>
