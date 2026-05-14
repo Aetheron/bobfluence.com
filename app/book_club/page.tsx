@@ -89,7 +89,7 @@ export default async function bookClub() {
                     </div>
                   </div>
                 </div>
-                <div className="col-span-2!">
+                <div className="col-span-2! mt-8 lg:mt-0">
                   <object
                     data="/Character_Sheet.pdf"
                     type="application/pdf"
