@@ -39,7 +39,12 @@ export default async function bookClub() {
     data,
     error,
   }: { data: currentBookType[] | null; error: PostgrestError | null } =
-    await supabase.from("current_book").select("*").limit(1)
+    await supabase
+      .from("current_book")
+      .select("*")
+      .gt("end_date", new Date().toISOString())
+      .lte("start_date", new Date().toISOString())
+      .limit(1)
 
   const currentBook = data ? (data[0] ?? null) : null
 
