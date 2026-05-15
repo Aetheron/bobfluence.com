@@ -3,6 +3,7 @@ import { SubmitButton } from "@/components/submit-button"
 import background from "@/public/book-club-gradient.svg"
 import { createClient } from "@/utils/supabase/server"
 import { PostgrestError } from "@supabase/supabase-js"
+import { Metadata } from "next"
 import { cookies } from "next/headers"
 import Image from "next/image"
 import Link from "next/link"
@@ -17,6 +18,12 @@ type currentBookType = {
   schedule: JSON
   start_date: Date
   end_date: Date
+}
+
+export const metadata: Metadata = {
+  title: "Book Club",
+  description:
+    "The official home of the UMHP Book Club. Get details on the current book and vote on the next book.",
 }
 
 export default async function bookClub() {
