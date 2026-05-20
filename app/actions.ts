@@ -2,7 +2,7 @@
 
 import { createClient } from "@/utils/supabase/server"
 import { encodedRedirect } from "@/utils/utils"
-import { SupabaseClient } from "@supabase/supabase-js"
+import { PostgrestError, SupabaseClient } from "@supabase/supabase-js"
 import { revalidatePath } from "next/cache"
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
@@ -225,4 +225,37 @@ export const updateProfileAction = async <NotificationStateType>(
     message: "Your profile has been updated successfully.",
     status: 1,
   }
+}
+
+type stateType = {
+  error: PostgrestError | null
+}
+
+export const submitBookSuggestionAction = async (
+  previousState: stateType,
+  formData: FormData
+) => {
+  const bookTitle = formData.get("bookTitle")
+  const author = formData.get("author")
+  const synopsis = formData.get("synopsis")
+  const coverArt = formData.get("coverArt")
+  const pages = formData.get("pages")
+
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const { data, error } = await supabase.from("book_choices").insert({
+    title: bookTitle,
+    author: author,
+    synopsis: synopsis,
+    cover_art: coverArt,
+    pages: pages,
+    user_id: user?.id,
+  })
+  console.dir(data)
+  console.dir(error)
+  revalidatePath("/book_club")
+
+  return { error: error }
 }

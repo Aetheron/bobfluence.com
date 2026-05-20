@@ -1,5 +1,6 @@
 // import backgroundMobile from "@/public/book-club-gradient-mobile.svg"
 import { SubmitButton } from "@/components/submit-button"
+import Vote from "@/components/vote"
 import background from "@/public/book-club-gradient.svg"
 import { createClient } from "@/utils/supabase/server"
 import { PostgrestError } from "@supabase/supabase-js"
@@ -59,6 +60,7 @@ export default async function bookClub() {
         alt=""
       />
       {session ? (
+        currentBook ? (
         <div className="mx-auto max-w-3xl">
           <h1 className="mb-6 text-center sm:text-left text-4xl font-bold text-gray-900 dark:text-gray-200">
             {currentBook && currentBook.theme_title}
@@ -114,6 +116,9 @@ export default async function bookClub() {
             </div>
           </div>
         </div>
+        ) : (
+          <Vote></Vote>
+        )
       ) : (
         <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 lg:min-w-100">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
