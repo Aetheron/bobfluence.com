@@ -1,8 +1,9 @@
 "use server"
 
-import { createClient } from "@/utils/supabase/server"
+import { createClient, createClientElevated } from "@/utils/supabase/server"
 import { encodedRedirect } from "@/utils/utils"
 import { PostgrestError, SupabaseClient } from "@supabase/supabase-js"
+import { UUID } from "crypto"
 import { revalidatePath } from "next/cache"
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
@@ -258,4 +259,51 @@ export const submitBookSuggestionAction = async (
   revalidatePath("/book_club")
 
   return { error: error }
+}
+
+type bookChoice = {
+  title: string
+  author: string
+  synopsis: string
+  coverArt: string
+  pages: number
+  user_id: UUID
+}
+
+export const getBookChoicesAction = async () => {
+  const superSupabase = await createClientElevated()
+  const supabase = await createClient()
+
+  const {
+    data: books,
+    error,
+  }: { data: bookChoice[] | null; error: PostgrestError | null } =
+    await supabase.from("book_choices").select(`
+      title,
+      author,
+      synopsis,
+      coverArt: cover_art,
+      pages,
+      user_id
+    `)
+  if (error) {
+    return { error: error }
+  }
+
+  const {
+    data: { users },
+  } = await superSupabase.auth.admin.listUsers()
+
+  const booksWithUser = books?.map((book) => {
+    return {
+      title: book.title,
+      author: book.author,
+      synopsis: book.synopsis,
+      coverArt: book.coverArt,
+      pages: book.pages,
+      user: users.find((u) => u.id == book.user_id)?.email,
+    }
+  })
+
+  return { books: booksWithUser, error: null }
 }

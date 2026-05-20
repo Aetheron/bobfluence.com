@@ -12,7 +12,7 @@ export default function Vote() {
   return (
     <form action={suggestBookSave}>
       <div className="space-y-12 mb-6">
-        <h1 className="text-3xl/7 font-semibold text-gray-900 dark:text-gray-100">
+        <h1 className="text-3xl/7 font-semibold text-gray-100">
           Submit a book
         </h1>
         <p className="mt-1 text-sm/6 text-gray-600"></p>
@@ -74,8 +74,13 @@ export default function Vote() {
               <input
                 id="coverArt"
                 name="coverArt"
+                placeholder="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1741160184i/223469227.jpg"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-teal-300 sm:text-sm/6"
               />
+              <p className="text-sm/4 text-gray-300">
+                Only Goodreads is supported for cover art. Right click an image
+                and choose &quot;Copy image address&quot;
+              </p>
             </div>
           </div>
           <div>

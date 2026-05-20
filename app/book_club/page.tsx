@@ -1,5 +1,6 @@
 // import backgroundMobile from "@/public/book-club-gradient-mobile.svg"
 import { SubmitButton } from "@/components/submit-button"
+import SuggestedBooks from "@/components/suggested-books"
 import Vote from "@/components/vote"
 import background from "@/public/book-club-gradient.svg"
 import { createClient } from "@/utils/supabase/server"
@@ -117,7 +118,10 @@ export default async function bookClub() {
           </div>
         </div>
         ) : (
+          <div className="grid gap-8 mt-8">
+            <SuggestedBooks />
           <Vote></Vote>
+          </div>
         )
       ) : (
         <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 lg:min-w-100">
