@@ -120,7 +120,7 @@ export default async function bookClub() {
         ) : (
           <div className="grid gap-8 mt-8">
             <SuggestedBooks />
-          <Vote></Vote>
+            <Vote />
           </div>
         )
       ) : (

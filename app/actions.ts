@@ -262,12 +262,14 @@ export const submitBookSuggestionAction = async (
 }
 
 type bookChoice = {
+  id: UUID
   title: string
   author: string
   synopsis: string
   coverArt: string
   pages: number
   user_id: UUID
+  votes_cast: { count: number }[]
 }
 
 export const getBookChoicesAction = async () => {
@@ -279,12 +281,14 @@ export const getBookChoicesAction = async () => {
     error,
   }: { data: bookChoice[] | null; error: PostgrestError | null } =
     await supabase.from("book_choices").select(`
+      id,
       title,
       author,
       synopsis,
       coverArt: cover_art,
       pages,
-      user_id
+      user_id,
+      votes_cast(count)
     `)
   if (error) {
     return { error: error }
@@ -296,14 +300,40 @@ export const getBookChoicesAction = async () => {
 
   const booksWithUser = books?.map((book) => {
     return {
+      id: book.id,
       title: book.title,
       author: book.author,
       synopsis: book.synopsis,
       coverArt: book.coverArt,
       pages: book.pages,
       user: users.find((u) => u.id == book.user_id)?.email,
+      votes: book.votes_cast[0].count,
     }
   })
 
   return { books: booksWithUser, error: null }
+}
+
+export const voteForBookChoiceAction = async (bookId: UUID) => {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  supabase.from("votes_cast").insert({ user_id: user?.id, book_id: bookId })
+
+  revalidatePath("/book_club")
+}
+
+export const removeVoteForBookChoiceAction = async (bookId: UUID) => {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  supabase
+    .from("votes_cast")
+    .delete()
+    .eq("user_id", user?.id)
+    .eq("book_id", bookId)
+
+  revalidatePath("/book_club")
 }
