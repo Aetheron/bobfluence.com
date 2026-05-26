@@ -46,13 +46,13 @@ export default async function SuggestedBooks() {
                     {book.author}
                   </p>
                   <p className="text-xs/5 font-semibold text-gray-400">
-                    Submitted by {book.user}
+                    Submitted by {book.user?.split("@")[0]}
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 <b>{book.votes}</b>
-                <VoteButton bookId={book.id} />
+                <VoteButton bookId={book.id} unvote={book.userVoted} />
               </div>
             </li>
           ))}

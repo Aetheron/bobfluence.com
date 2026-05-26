@@ -295,6 +295,14 @@ export const getBookChoicesAction = async () => {
   }
 
   const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const { data: userVotes } = await supabase
+    .from("votes_cast")
+    .select()
+    .eq("user_id", user?.id)
+
+  const {
     data: { users },
   } = await superSupabase.auth.admin.listUsers()
 
@@ -308,6 +316,7 @@ export const getBookChoicesAction = async () => {
       pages: book.pages,
       user: users.find((u) => u.id == book.user_id)?.email,
       votes: book.votes_cast[0].count,
+      userVoted: userVotes?.some((v) => v.book_id == book.id),
     }
   })
 
@@ -319,7 +328,9 @@ export const voteForBookChoiceAction = async (bookId: UUID) => {
   const {
     data: { user },
   } = await supabase.auth.getUser()
-  supabase.from("votes_cast").insert({ user_id: user?.id, book_id: bookId })
+  await supabase
+    .from("votes_cast")
+    .insert({ user_id: user?.id, book_id: bookId })
 
   revalidatePath("/book_club")
 }
@@ -329,7 +340,7 @@ export const removeVoteForBookChoiceAction = async (bookId: UUID) => {
   const {
     data: { user },
   } = await supabase.auth.getUser()
-  supabase
+  await supabase
     .from("votes_cast")
     .delete()
     .eq("user_id", user?.id)
