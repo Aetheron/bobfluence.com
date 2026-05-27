@@ -29,7 +29,7 @@ export default function Vote() {
               <input
                 id="bookTitle"
                 name="bookTitle"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-teal-300 sm:text-sm/6"
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-300 sm:text-sm/6"
               />
             </div>
           </div>
@@ -44,7 +44,7 @@ export default function Vote() {
               <input
                 id="author"
                 name="author"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-teal-300 sm:text-sm/6"
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-300 sm:text-sm/6"
               />
             </div>
           </div>
@@ -59,7 +59,7 @@ export default function Vote() {
               <TextArea
                 id="synopsis"
                 name="synopsis"
-                className="block w-full rounded-md bg-white! px-3 py-1.5 text-base text-gray-900! outline -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-teal-300 sm:text-sm/6"
+                className="block w-full rounded-md bg-white! px-3 py-1.5 text-base text-gray-900! outline -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-300! focus-within:outline-sky-300! sm:text-sm/6"
               />
             </div>
           </div>
@@ -75,7 +75,7 @@ export default function Vote() {
                 id="coverArt"
                 name="coverArt"
                 placeholder="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1741160184i/223469227.jpg"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-teal-300 sm:text-sm/6"
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-300 sm:text-sm/6"
               />
               <p className="text-sm/4 text-gray-300">
                 Only Goodreads is supported for cover art. Right click an image
@@ -94,14 +94,14 @@ export default function Vote() {
               <input
                 id="pages"
                 name="pages"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-teal-300 sm:text-sm/6"
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-300 sm:text-sm/6"
               />
             </div>
           </div>
         </div>
         <button
           type="submit"
-          className="rounded-md bg-emerald-400 px-3 py-2 w-full text-sm font-semibold text-gray-800 shadow-sm hover:bg-emerald-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500 cursor-pointer"
+          className="rounded-md bg-sage-500 px-3 py-2 w-full text-sm font-semibold text-gray-800 shadow-sm hover:bg-sage-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-600 cursor-pointer"
         >
           <div className="w-fit grid grid-cols-2 gap-x-1 justify-items-center mx-auto">
             Add

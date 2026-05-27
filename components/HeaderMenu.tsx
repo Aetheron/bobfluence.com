@@ -43,7 +43,7 @@ export default function Header() {
       <NavigationMenu.Link
         asChild
         active={isActive}
-        className="block select-none rounded-md px-3 py-2 font-medium leading-none no-underline outline-hidden focus:shadow-[0_0_0_2px] hover:bg-(--accent-a8) focus:bg-(--accent-10) data-active:bg-(--accent-10)"
+        className={`block select-none rounded-md px-3 py-2 font-medium leading-none no-underline outline-hidden focus:shadow-[0_0_0_2px] hover:bg-sky-200 focus:bg-sky-400 data-active:bg-sky-300 ${isActive ? "text-gray-800" : "text-white"}`}
       >
         <NextLink href={href} {...props} />
       </NavigationMenu.Link>
