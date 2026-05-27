@@ -348,3 +348,10 @@ export const removeVoteForBookChoiceAction = async (bookId: UUID) => {
 
   revalidatePath("/book_club")
 }
+
+export const startNewVotingRoundAction = async () => {
+  const supabase = await createClient()
+  await supabase.rpc("start_new_round_of_voting")
+
+  revalidatePath("/book_club")
+}
