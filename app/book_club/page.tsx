@@ -95,12 +95,15 @@ export default async function bookClub() {
                       Schedule
                     </h2>
                     <div>
-                      <ol>
+                        {/* <ol>
                         <li>Week 1: Ch. 1 - 9</li>
                         <li>Week 2: Ch. 10 - 17</li>
                         <li>Week 3: Ch. 18 - 26</li>
                         <li>Week 4: Ch. 27 - 37</li>
-                      </ol>
+                        </ol> */}
+                        {currentBook.schedule
+                          ? JSON.stringify(currentBook.schedule)
+                          : "No schedule yet"}
                     </div>
                   </div>
                 </div>
