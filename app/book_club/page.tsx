@@ -17,7 +17,7 @@ type currentBookType = {
   title: string
   author: string
   cover_art: string
-  schedule: JSON
+  schedule: string[]
   start_date: Date
   end_date: Date
 }
@@ -102,7 +102,11 @@ export default async function bookClub() {
                         <li>Week 4: Ch. 27 - 37</li>
                         </ol> */}
                         {currentBook.schedule
-                          ? JSON.stringify(currentBook.schedule)
+                          ? currentBook.schedule.map((s, i) => (
+                              <p key={i}>
+                                Week {i + 1}: {s}
+                              </p>
+                            ))
                           : "No schedule yet"}
                     </div>
                   </div>
