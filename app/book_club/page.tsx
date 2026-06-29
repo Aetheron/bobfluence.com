@@ -22,6 +22,10 @@ type currentBookType = {
   end_date: Date
 }
 
+type participantsType = {
+  email: string
+}
+
 export const metadata: Metadata = {
   title: "Book Club",
   description:
@@ -50,6 +54,9 @@ export default async function bookClub() {
 
   const currentBook = data ? (data[0] ?? null) : null
 
+  const { data: participants }: { data: participantsType[] | null } =
+    await supabase.from("book_club_participants").select("*")
+
   return (
     <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <Image
@@ -62,44 +69,47 @@ export default async function bookClub() {
       />
       {session ? (
         currentBook ? (
-        <div className="mx-auto max-w-3xl">
-          <h1 className="mb-6 text-center sm:text-left text-4xl font-bold text-gray-900 dark:text-gray-200">
-            {currentBook && currentBook.theme_title}
-          </h1>
-          <div className="overflow-hidden rounded-lg bg-white shadow-sm dark:bg-gray-800/50 dark:shadow-none dark:outline dark:-outline-offset-1 dark:outline-white/10">
-            <div className="px-4 py-5 sm:p-6">
-              <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-8">
-                <div className="">
-                  {currentBook && (
-                    <Image
-                      src={currentBook && currentBook.cover_art}
-                      alt="Book cover art"
-                      width={200}
-                      height={400}
-                      loading="eager"
-                      className="w-full sm:w-auto"
-                    />
-                  )}
-                </div>
-                <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 flex flex-col">
-                  <div>
-                    <h2 className="text-center sm:text-left text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-200">
-                      {currentBook && currentBook.title}
-                    </h2>
-                    <h3 className="text-center sm:text-left mt-3 text-2xl text-gray-700 dark:text-gray-500">
-                      {currentBook && currentBook.author}
-                    </h3>
+          <div className="mx-auto max-w-3xl">
+            <h1 className="mb-6 text-center sm:text-left text-4xl font-bold text-gray-900 dark:text-gray-200">
+              {currentBook && currentBook.theme_title}
+            </h1>
+            <div className="overflow-hidden rounded-lg bg-white shadow-sm dark:bg-gray-800/50 dark:shadow-none dark:outline dark:-outline-offset-1 dark:outline-white/10">
+              <div className="px-4 py-5 sm:p-6">
+                <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-8">
+                  <div className="">
+                    {currentBook && (
+                      <Image
+                        src={currentBook && currentBook.cover_art}
+                        alt="Book cover art"
+                        width={200}
+                        height={400}
+                        loading="eager"
+                        className="w-full sm:w-auto"
+                      />
+                    )}
                   </div>
-                  <div className="text-center sm:text-left mt-8 sm:mt-12">
-                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-200">
-                      Schedule
-                    </h2>
+                  <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 flex flex-col">
                     <div>
+                      <h2 className="text-center sm:text-left text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-200">
+                        {currentBook && currentBook.title}
+                      </h2>
+                      <h3 className="text-center sm:text-left mt-3 text-2xl text-gray-700 dark:text-gray-500">
+                        {currentBook && currentBook.author}
+                      </h3>
+                    </div>
+                    <div>
+                      <button>Join</button>
+                    </div>
+                    <div className="text-center sm:text-left mt-8 sm:mt-12">
+                      <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-200">
+                        Schedule
+                      </h2>
+                      <div>
                         {/* <ol>
-                        <li>Week 1: Ch. 1 - 9</li>
-                        <li>Week 2: Ch. 10 - 17</li>
-                        <li>Week 3: Ch. 18 - 26</li>
-                        <li>Week 4: Ch. 27 - 37</li>
+                          <li>Week 1: Ch. 1 - 9</li>
+                          <li>Week 2: Ch. 10 - 17</li>
+                          <li>Week 3: Ch. 18 - 26</li>
+                          <li>Week 4: Ch. 27 - 37</li>
                         </ol> */}
                         {currentBook.schedule
                           ? currentBook.schedule.map((s, i) => (
@@ -108,22 +118,21 @@ export default async function bookClub() {
                               </p>
                             ))
                           : "No schedule yet"}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="col-span-2! mt-8 lg:mt-0">
-                  <object
-                    data="/Character_Sheet.pdf"
-                    type="application/pdf"
-                    width="100%"
-                    height={600}
-                  ></object>
-                  {/* <iframe src="@/public/Character_Sheet.pdf" width={100} /> */}
+                  {/* <div className="col-span-2! mt-8 lg:mt-0">
+                    <object
+                      data="/Character_Sheet.pdf"
+                      type="application/pdf"
+                      width="100%"
+                      height={600}
+                    ></object>
+                  </div> */}
                 </div>
               </div>
             </div>
           </div>
-        </div>
         ) : (
           <div className="grid gap-8 mt-8">
             <SuggestedBooks />
