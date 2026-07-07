@@ -97,9 +97,9 @@ export default async function bookClub() {
                         {currentBook && currentBook.author}
                       </h3>
                     </div>
-                    <div>
+                    {/* <div>
                       <button>Join</button>
-                    </div>
+                    </div> */}
                     <div className="text-center sm:text-left mt-8 sm:mt-12">
                       <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-200">
                         Schedule
