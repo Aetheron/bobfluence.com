@@ -5,11 +5,18 @@ import Vote from "@/components/vote"
 import background from "@/public/book-club-gradient.svg"
 import { createClient } from "@/utils/supabase/server"
 import { PostgrestError } from "@supabase/supabase-js"
+import { UUID } from "crypto"
 import { Metadata } from "next"
 import { cookies } from "next/headers"
 import Image from "next/image"
 import Link from "next/link"
-import { signInBookClubAction } from "../actions"
+import { getBookChoicesAction, signInBookClubAction } from "../actions"
+
+export const metadata: Metadata = {
+  title: "Book Club",
+  description:
+    "The official home of the UMHP Book Club. Get details on the current book and vote on the next book.",
+}
 
 type currentBookType = {
   id: string
@@ -26,10 +33,20 @@ type participantsType = {
   email: string
 }
 
-export const metadata: Metadata = {
-  title: "Book Club",
-  description:
-    "The official home of the UMHP Book Club. Get details on the current book and vote on the next book.",
+export type bookType = {
+  id: UUID
+  title: string
+  author: string
+  synopsis: string
+  user: string | undefined
+  votes: number
+  userVoted: boolean | undefined
+  coverArt: string
+}
+
+export type bookSuggestionType = {
+  books?: bookType[]
+  error: PostgrestError | null
 }
 
 export default async function bookClub() {
@@ -135,7 +152,7 @@ export default async function bookClub() {
           </div>
         ) : (
           <div className="grid gap-8 mt-8">
-            <SuggestedBooks />
+            <SuggestedBooks bookSuggestions={await getBookChoicesAction()} />
             <Vote />
           </div>
         )

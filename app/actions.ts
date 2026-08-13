@@ -261,7 +261,7 @@ export const submitBookSuggestionAction = async (
   return { error: error }
 }
 
-type bookChoice = {
+export type bookChoiceType = {
   id: UUID
   title: string
   author: string
@@ -279,7 +279,7 @@ export const getBookChoicesAction = async () => {
   const {
     data: books,
     error,
-  }: { data: bookChoice[] | null; error: PostgrestError | null } =
+  }: { data: bookChoiceType[] | null; error: PostgrestError | null } =
     await supabase.from("book_choices").select(`
       id,
       title,

@@ -1,12 +1,47 @@
+"use client"
+
 import { getBookChoicesAction } from "@/app/actions"
+import { bookSuggestionType } from "@/app/book_club/page"
+import { createClient } from "@/utils/supabase/client"
 import { BookDashedIcon } from "lucide-react"
 import Image from "next/image"
+import { useEffect, useState } from "react"
 import BookSynopsis from "./book-synopsis"
 import NewRoundButton from "./new-round-button"
 import VoteButton from "./vote-button"
 
-export default async function SuggestedBooks() {
-  const bookSuggestions = await getBookChoicesAction()
+export default function SuggestedBooks({
+  bookSuggestions: initialBookSuggestions,
+}: {
+  bookSuggestions: bookSuggestionType
+}) {
+  const supabase = createClient()
+  const [bookSuggestions, setBookSuggestions] = useState(initialBookSuggestions)
+
+  useEffect(() => {
+    const subscribe = async () => {
+      const channel = supabase
+        .channel("public:book_choices")
+        .on(
+          "postgres_changes",
+          {
+            event: "INSERT",
+            schema: "public",
+            table: "book_choices",
+          },
+          async (payload) => {
+            const updated = await getBookChoicesAction()
+            setBookSuggestions(updated)
+          }
+        )
+        .subscribe()
+
+      return () => {
+        supabase.removeChannel(channel)
+      }
+    }
+    subscribe()
+  }, [supabase])
 
   return (
     <>
