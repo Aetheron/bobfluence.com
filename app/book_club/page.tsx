@@ -152,7 +152,9 @@ export default async function bookClub() {
           </div>
         ) : (
           <div className="grid gap-8 mt-8">
-            <SuggestedBooks bookSuggestions={await getBookChoicesAction()} />
+            <SuggestedBooks
+              initialBookSuggestions={await getBookChoicesAction()}
+            />
             <Vote />
           </div>
         )
