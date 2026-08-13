@@ -11,9 +11,9 @@ import NewRoundButton from "./new-round-button"
 import VoteButton from "./vote-button"
 
 export default function SuggestedBooks({
-  bookSuggestions: initialBookSuggestions,
+  initialBookSuggestions,
 }: {
-  bookSuggestions: bookSuggestionType
+  initialBookSuggestions: bookSuggestionType
 }) {
   const supabase = createClient()
   const [bookSuggestions, setBookSuggestions] = useState(initialBookSuggestions)
@@ -29,9 +29,10 @@ export default function SuggestedBooks({
             schema: "public",
             table: "book_choices",
           },
-          async (payload) => {
-            const updated = await getBookChoicesAction()
-            setBookSuggestions(updated)
+          (payload) => {
+            getBookChoicesAction().then((updated) =>
+              setBookSuggestions(updated)
+            )
           }
         )
         .subscribe()
