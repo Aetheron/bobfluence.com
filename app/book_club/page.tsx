@@ -67,7 +67,7 @@ export default async function bookClub() {
       .select("*")
       .gt("end_date", new Date().toISOString())
       .lte("start_date", new Date().toISOString())
-      .limit(1)
+      .limit(0)
 
   const currentBook = data ? (data[0] ?? null) : null
 
