@@ -35,14 +35,25 @@ export default function SuggestedBooks({
             )
           }
         )
-        .subscribe()
+        .subscribe((status, error) =>
+          !error
+            ? console.log(
+                "Subscribed to book_choices channel with status: ",
+                status
+              )
+            : console.error(
+                "Error subscribing to book_choices channel: ",
+                error
+              )
+        )
 
       return () => {
         supabase.removeChannel(channel)
+        console.log("Unsubscribed from book_choices channel")
       }
     }
     subscribe()
-  }, [supabase])
+  }, [supabase, bookSuggestions, setBookSuggestions])
 
   return (
     <>
