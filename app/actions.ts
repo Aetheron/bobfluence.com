@@ -332,7 +332,7 @@ export const voteForBookChoiceAction = async (bookId: UUID) => {
     .from("votes_cast")
     .insert({ user_id: user?.id, book_id: bookId })
 
-  revalidatePath("/book_club")
+  // revalidatePath("/book_club")
 }
 
 export const removeVoteForBookChoiceAction = async (bookId: UUID) => {
@@ -346,7 +346,17 @@ export const removeVoteForBookChoiceAction = async (bookId: UUID) => {
     .eq("user_id", user?.id)
     .eq("book_id", bookId)
 
-  revalidatePath("/book_club")
+  // revalidatePath("/book_club")
+}
+
+export const getVotesForBook = async (bookId: UUID) => {
+  const supabase = await createClient()
+  const { count } = await supabase
+    .from("votes_cast")
+    .select("*", { count: "exact", head: true })
+    .eq("book_id", bookId)
+
+  return count || 0
 }
 
 export const startNewVotingRoundAction = async () => {
