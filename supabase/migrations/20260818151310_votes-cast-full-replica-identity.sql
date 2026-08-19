@@ -1,0 +1,1 @@
+ALTER TABLE public.votes_cast REPLICA IDENTITY FULL;
