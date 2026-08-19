@@ -1,5 +1,6 @@
 "use client"
 
+import { ChevronDown, ChevronUp } from "lucide-react"
 import { ReactNode, useState } from "react"
 
 export default function BookSynopsis({ children }: { children: ReactNode }) {
@@ -11,6 +12,11 @@ export default function BookSynopsis({ children }: { children: ReactNode }) {
       >
         {children}
       </p>
+      {open ? (
+        <ChevronUp className="w-full text-gray-200/50" />
+      ) : (
+        <ChevronDown className="w-full text-gray-200/50" />
+      )}
     </div>
   )
 }
