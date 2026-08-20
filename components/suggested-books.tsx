@@ -20,7 +20,12 @@ export default function SuggestedBooks({
     const subscribe = async () => {
       const channel = supabase
         .channel("public:book_choices")
-        .on(
+
+        if (
+        channel.state !== "joined" &&
+        channel.state !== "joining"
+      ) {
+        channel.on(
           "postgres_changes",
           {
             event: "INSERT",
@@ -44,6 +49,7 @@ export default function SuggestedBooks({
                 error
               )
         )
+      }
 
       return () => {
         supabase.removeChannel(channel)
