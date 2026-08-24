@@ -306,6 +306,8 @@ export const getBookChoicesAction = async () => {
   } = await superSupabase.auth.admin.listUsers()
 
   const booksWithUser = books?.map((book) => {
+    const user = users.find((u) => u.id == book.user_id)
+
     return {
       id: book.id,
       title: book.title,
@@ -313,7 +315,10 @@ export const getBookChoicesAction = async () => {
       synopsis: book.synopsis,
       coverArt: book.coverArt,
       pages: book.pages,
-      user: users.find((u) => u.id == book.user_id)?.email,
+      user:
+        user?.user_metadata.first_name && user?.user_metadata.last_name
+          ? `${user.user_metadata.first_name} ${user.user_metadata.last_name}`
+          : user?.email,
       votes: book.votes_cast[0].count,
       userVoted: userVotes?.some((v) => v.book_id == book.id),
     }

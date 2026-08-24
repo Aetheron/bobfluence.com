@@ -122,7 +122,7 @@ export default function BookEntry({ initialBook }: { initialBook: bookType }) {
               {book.author}
             </p>
             <p className="text-xs/5 font-semibold text-gray-400">
-              Submitted by {book.user?.split("@")[0]}
+              Submitted by {book.user}
             </p>
           </div>
         </div>
