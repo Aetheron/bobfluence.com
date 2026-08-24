@@ -1,4 +1,6 @@
 import Header from "@/components/HeaderMenu"
+import Notifications from "@/components/notifications"
+import { NotificationsStoreProvider } from "@/providers/notifications-store-provider"
 import { Theme } from "@radix-ui/themes"
 import "@radix-ui/themes/styles.css"
 import type { Metadata } from "next"
@@ -32,11 +34,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Theme appearance="dark">
-          <Header></Header>
-          {children}
-          <footer className="text-center text-stone-400">
-            <a href="https://robertvl.dev">© Robert VanLonkhuyzen</a>
-          </footer>
+          <NotificationsStoreProvider>
+            <Header></Header>
+            {children}
+            <footer className="text-center text-stone-400">
+              <a href="https://robertvl.dev">© Robert VanLonkhuyzen</a>
+            </footer>
+            <Notifications></Notifications>
+          </NotificationsStoreProvider>
         </Theme>
       </body>
     </html>

@@ -209,7 +209,6 @@ export const updateProfileAction = async <NotificationStateType>(
     data: {
       first_name: formData.get("first_name"),
       last_name: formData.get("last_name"),
-      timezone: formData.get("timezone"),
     },
   })
 
