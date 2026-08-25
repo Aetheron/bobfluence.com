@@ -61,7 +61,7 @@ export default function Header() {
 
       {/* Desktop menu */}
       <div
-        className={`hidden rounded-md md:flex flex-row gap-2 p-2 ${
+        className={`hidden rounded-md md:flex flex-row gap-2 p-2 transition ${
           scrollPosition > 10
             ? "shadow-xl bg-baltic-blue-900"
             : "shadow-sm bg-baltic-blue-800"
