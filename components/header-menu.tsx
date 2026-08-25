@@ -43,7 +43,7 @@ export default function Header() {
         <PopoverPanel
           anchor="bottom end"
           transition
-          className="rounded-lg mt-2 bg-gray-800 text-gray-200 transition duration-200 ease-in-out z-20 w-[calc(100vw-1rem)]"
+          className="rounded-lg mt-2 bg-gray-800 text-gray-200 transition duration-200 ease-in-out data-closed:scale-95 data-closed:opacity-0 z-20 w-[calc(100vw-1rem)]"
         >
           <div className="flex flex-col gap-2 p-2">
             {links.map((link) => (
