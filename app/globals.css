@@ -4,6 +4,18 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
+  --color-baltic-blue-50: #c1eefd;
+  --color-baltic-blue-100: #83defc;
+  --color-baltic-blue-200: #45cdfa;
+  --color-baltic-blue-300: #06bcf9;
+  --color-baltic-blue-400: #058dba;
+  --color-baltic-blue-500: #035e7b;
+  --color-baltic-blue-600: #034e68;
+  --color-baltic-blue-700: #023f53;
+  --color-baltic-blue-800: #022f3e;
+  --color-baltic-blue-900: #011f29;
+  --color-baltic-blue-950: #011015;
+
   --color-sage-50: #f5f4ed;
   --color-sage-100: #ebeadb;
   --color-sage-200: #e0dfca;

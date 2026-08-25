@@ -1,4 +1,4 @@
-import Header from "@/components/HeaderMenu"
+import Header from "@/components/header-menu"
 import Notifications from "@/components/notifications"
 import { NotificationsStoreProvider } from "@/providers/notifications-store-provider"
 import { Theme } from "@radix-ui/themes"
