@@ -62,7 +62,7 @@ export default function ProfileInfoForm({ user }: { user: User }) {
                 type="text"
                 autoComplete="given-name"
                 defaultValue={user.user_metadata["first_name"]}
-                className="block w-full rounded-md bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-gray-100 outline -outline-offset-1 outline-gray-300 dark:outline-slate-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-pale-sky-300 focus:dark:bg-slate-700 sm:text-sm/6"
+                className="block w-full rounded-md bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-gray-100 outline -outline-offset-1 outline-gray-300 dark:outline-slate-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-baltic-blue-400 focus:dark:bg-baltic-blue-700 sm:text-sm/6"
               />
             </div>
           </div>
@@ -81,7 +81,7 @@ export default function ProfileInfoForm({ user }: { user: User }) {
                 type="text"
                 autoComplete="family-name"
                 defaultValue={user.user_metadata["last_name"]}
-                className="block w-full rounded-md bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-gray-100 outline -outline-offset-1 outline-gray-300 dark:outline-slate-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-pale-sky-300 focus:dark:bg-slate-700 sm:text-sm/6"
+                className="block w-full rounded-md bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-gray-100 outline -outline-offset-1 outline-gray-300 dark:outline-slate-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-baltic-blue-400 focus:dark:bg-baltic-blue-700 sm:text-sm/6"
               />
             </div>
           </div>
@@ -95,11 +95,12 @@ export default function ProfileInfoForm({ user }: { user: User }) {
             </label>
             <div className="mt-2">
               <input
+                disabled
                 id="email"
                 name="email"
                 type="email"
                 autoComplete="email"
-                className="block w-full rounded-md bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-gray-100 outline -outline-offset-1 outline-gray-300 dark:outline-slate-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-pale-sky-300 focus:dark:bg-slate-700 sm:text-sm/6"
+                className="block w-full rounded-md bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-gray-100 outline -outline-offset-1 outline-gray-300 dark:outline-slate-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-baltic-blue-300 focus:dark:bg-baltic-blue-500 sm:text-sm/6 disabled:bg-gray-950 disabled:text-gray-600 disabled:outline-gray-800"
                 defaultValue={user.email}
               />
             </div>
