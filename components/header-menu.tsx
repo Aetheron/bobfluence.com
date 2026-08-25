@@ -1,6 +1,11 @@
 "use client"
 
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react"
+import {
+  Popover,
+  PopoverButton,
+  PopoverPanel,
+  useClose,
+} from "@headlessui/react"
 import { Menu } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -17,6 +22,8 @@ const links: HeaderLinksType[] = [
 ]
 
 export default function Header() {
+  const close = useClose()
+
   const [scrollPosition, setScrollPosition] = useState(0)
   const handleScroll = () => {
     const position = window.scrollY
@@ -51,6 +58,7 @@ export default function Header() {
                 key={link.name}
                 href={link.href}
                 className={`rounded-md px-2 py-1 ${(link.href.startsWith("/") ? link.href : "/" + link.href) === pathname ? "bg-pale-sky-800" : ""}`}
+                onClick={() => close()}
               >
                 {link.name}
               </Link>
@@ -71,7 +79,7 @@ export default function Header() {
           <Link
             key={link.name}
             href={link.href}
-            className={`rounded-md px-2 py-1 ${(link.href.startsWith("/") ? link.href : "/" + link.href) === pathname ? "bg-pale-sky-800" : ""}`}
+            className={`rounded-md px-2 py-1 text-xl ${(link.href.startsWith("/") ? link.href : "/" + link.href) === pathname ? "bg-pale-sky-800" : ""}`}
           >
             {link.name}
           </Link>
