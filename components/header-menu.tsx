@@ -79,7 +79,7 @@ export default function Header() {
           <Link
             key={link.name}
             href={link.href}
-            className={`rounded-md px-2 py-1 text-xl ${(link.href.startsWith("/") ? link.href : "/" + link.href) === pathname ? "bg-pale-sky-800" : ""}`}
+            className={`rounded-md px-2 py-1 text-xl hover:bg-pale-sky-700 ${(link.href.startsWith("/") ? link.href : "/" + link.href) === pathname ? "bg-pale-sky-800" : ""}`}
           >
             {link.name}
           </Link>
