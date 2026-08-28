@@ -199,6 +199,31 @@ export const signOutAction = async () => {
   return redirect("/sign-in")
 }
 
+export const updateEmailAction = async <NotificationStateType>(
+  previousState: NotificationStateType,
+  formData: FormData
+) => {
+  const supabase: SupabaseClient = await createClient()
+  const { data, error } = await supabase.auth.updateUser({
+    email: formData.get("email") as string,
+  })
+
+  if (error) {
+    return {
+      title: error.name,
+      message: error.message,
+      status: 0,
+    }
+  }
+
+  return {
+    title: "Email address updated",
+    message:
+      "You will receive a confirmation email at both your old and new email addresses. ",
+    status: 1,
+  }
+}
+
 export const updateProfileAction = async <NotificationStateType>(
   previousState: NotificationStateType,
   formData: FormData
@@ -207,8 +232,8 @@ export const updateProfileAction = async <NotificationStateType>(
 
   const { error } = await supabase.auth.updateUser({
     data: {
-      first_name: formData.get("first_name"),
-      last_name: formData.get("last_name"),
+      first_name: formData.get("first_name") as string,
+      last_name: formData.get("last_name") as string,
     },
   })
 
