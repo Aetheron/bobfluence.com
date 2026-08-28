@@ -136,18 +136,19 @@ export default function ProfileInfoForm({ user }: { user: User }) {
                     />
                   </div>
                 </div>
-
-                <button
-                  type="submit"
-                  className="flex justify-center cursor-pointer rounded-md bg-emerald-500 px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-emerald-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
-                >
-                  {updateProfilePending ? (
-                    <RefreshCw className="w-5 h-5"></RefreshCw>
-                  ) : (
-                    "Save"
-                  )}
-                </button>
               </div>
+            </div>
+            <div className="flex items-center justify-start gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8 dark:border-white/10">
+              <button
+                type="submit"
+                className="flex justify-center cursor-pointer rounded-md bg-emerald-500 px-3 py-2 w-full sm:w-auto text-sm font-semibold text-gray-700 shadow-sm hover:bg-emerald-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+              >
+                {updateProfilePending ? (
+                  <RefreshCw className="w-5 h-5"></RefreshCw>
+                ) : (
+                  "Save"
+                )}
+              </button>
             </div>
           </form>
         </div>
@@ -168,7 +169,7 @@ export default function ProfileInfoForm({ user }: { user: User }) {
           >
             <div className="px-4 py-6 sm:p-8">
               <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
-                <div className="sm:col-span-3">
+                <div className="sm:col-span-4">
                   <label
                     htmlFor="email"
                     className="cursor-pointer block text-sm/6 font-medium text-gray-900 dark:text-gray-300"
@@ -186,18 +187,37 @@ export default function ProfileInfoForm({ user }: { user: User }) {
                     />
                   </div>
                 </div>
-
-                <button
-                  type="submit"
-                  className="flex justify-center cursor-pointer rounded-md bg-emerald-500 px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-emerald-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
-                >
-                  {updateEmailPending ? (
-                    <RefreshCw className="w-5 h-5"></RefreshCw>
-                  ) : (
-                    "Save"
-                  )}
-                </button>
+                <div className="sm:col-span-4">
+                  <label
+                    htmlFor="password"
+                    className="cursor-pointer block text-sm/6 font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    Password
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      disabled
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      className="block w-full rounded-md bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-gray-100 outline -outline-offset-1 outline-gray-300 dark:outline-slate-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-baltic-blue-400 focus:dark:bg-baltic-blue-700 sm:text-sm/6 disabled:bg-gray-950/30 disabled:text-gray-600 disabled:outline-gray-800"
+                    />
+                  </div>
+                </div>
               </div>
+            </div>
+            <div className="flex items-center justify-start gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8 dark:border-white/10">
+              <button
+                type="submit"
+                className="flex justify-center cursor-pointer rounded-md bg-emerald-500 px-3 py-2 w-full sm:w-auto text-sm font-semibold text-gray-700 shadow-sm hover:bg-emerald-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+              >
+                {updateEmailPending ? (
+                  <RefreshCw className="w-5 h-5"></RefreshCw>
+                ) : (
+                  "Save"
+                )}
+              </button>
             </div>
           </form>
         </div>
