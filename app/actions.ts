@@ -217,9 +217,9 @@ export const updateEmailAction = async <NotificationStateType>(
   }
 
   return {
-    title: "Email address updated",
+    title: "Email address change submitted",
     message:
-      "You will receive a confirmation email at both your old and new email addresses. ",
+      "You will receive a confirmation email at both your old and new email addresses. Your change will not take effect until you confirm it.",
     status: 1,
   }
 }
