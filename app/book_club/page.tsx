@@ -87,10 +87,10 @@ export default async function bookClub() {
       {session ? (
         currentBook ? (
           <div className="mx-auto max-w-3xl">
-            <h1 className="mb-6 text-center sm:text-left text-4xl font-bold text-gray-900 dark:text-gray-200">
+            <h1 className="mb-6 text-center sm:text-left text-4xl font-bold text-gray-300 dark:text-gray-200">
               {currentBook && currentBook.theme_title}
             </h1>
-            <div className="overflow-hidden rounded-lg bg-white shadow-sm dark:bg-gray-800/50 dark:shadow-none dark:outline dark:-outline-offset-1 dark:outline-white/10">
+            <div className="overflow-hidden rounded-lg bg-white/80 shadow-sm dark:bg-gray-800/50 dark:shadow-none dark:outline dark:-outline-offset-1 dark:outline-white/10">
               <div className="px-4 py-5 sm:p-6">
                 <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-8">
                   <div className="">
@@ -107,10 +107,10 @@ export default async function bookClub() {
                   </div>
                   <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 flex flex-col">
                     <div>
-                      <h2 className="text-center sm:text-left text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-200">
+                      <h2 className="text-center sm:text-left text-3xl font-bold tracking-tight text-gray-800 dark:text-gray-200">
                         {currentBook && currentBook.title}
                       </h2>
-                      <h3 className="text-center sm:text-left mt-3 text-2xl text-gray-700 dark:text-gray-500">
+                      <h3 className="text-center sm:text-left mt-3 text-2xl text-gray-600 dark:text-gray-400">
                         {currentBook && currentBook.author}
                       </h3>
                     </div>
@@ -118,7 +118,7 @@ export default async function bookClub() {
                       <button>Join</button>
                     </div> */}
                     <div className="text-center sm:text-left mt-8 sm:mt-12">
-                      <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-200">
+                      <h2 className="text-3xl font-bold tracking-tight text-gray-800 dark:text-gray-200">
                         Schedule
                       </h2>
                       <div>
@@ -130,7 +130,10 @@ export default async function bookClub() {
                         </ol> */}
                         {currentBook.schedule
                           ? currentBook.schedule.map((s, i) => (
-                              <p key={i}>
+                              <p
+                                key={i}
+                                className="text-gray-600 dark:text-gray-100"
+                              >
                                 Week {i + 1}: {s}
                               </p>
                             ))
